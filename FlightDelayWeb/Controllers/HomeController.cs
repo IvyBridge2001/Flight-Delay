@@ -40,7 +40,8 @@ namespace python_test.Controllers
             ViewBag.Prob4 = 8.9;
             ViewBag.Prob5 = 9.9;
             ViewBag.Prob6 = 8.9;
-            ViewBag.Prob7 = 3.9;            //graph.Labels = "['a','b','c','d','e','f','g']";
+            ViewBag.Prob7 = 3.9;
+            //graph.Labels = "['a','b','c','d','e','f','g']";
             //graph.Labels = "[1,2,3,4,5,6,7]";
             graph.Date = DateTime.UtcNow;
             graph.Date = DateTime.UtcNow;
