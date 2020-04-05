@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "FlightDelayAPI", "FlightDelayAPI\FlightDelayAPI\FlightDelayAPI.pyproj", "{CA959E3D-2740-44BF-9106-9DF7EAC33DD3}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Data_Cleansing", "Data_Cleansing\Data_Cleansing.pyproj", "{234C79CD-EF3F-4B79-BFF4-8A948E4259D1}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Model_Training", "Model_Training\Model_Training.pyproj", "{7FE8173F-16AA-486A-8213-ED52E40D5FD7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CA959E3D-2740-44BF-9106-9DF7EAC33DD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA959E3D-2740-44BF-9106-9DF7EAC33DD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{234C79CD-EF3F-4B79-BFF4-8A948E4259D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{234C79CD-EF3F-4B79-BFF4-8A948E4259D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FE8173F-16AA-486A-8213-ED52E40D5FD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FE8173F-16AA-486A-8213-ED52E40D5FD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {75912162-B2FB-40B0-BD6C-A84E34B84940}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,5 @@
+.vs/
+FlightDelayWeb/.vs/
+FlightDelayWeb/obj/*
+FlightDelayWeb/bin/
+FlightDelayWeb/wwwroot/lib/
