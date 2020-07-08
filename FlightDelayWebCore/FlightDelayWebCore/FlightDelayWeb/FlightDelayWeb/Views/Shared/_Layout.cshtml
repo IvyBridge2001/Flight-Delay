@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>  
+    <title>@ViewData["Title"] - Tech Guru</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <script>
+        function goToURL() {
+            var o = document.getElementById("Origin");
+            var OriginScreen = o.options[o.selectedIndex].text;
+            var d = document.getElementById("Destination");
+            var DestinationScreen = d.options[d.selectedIndex].text;
+            var Origin = 'SAO/';
+            var Destination = 'RIO/';
+            switch (OriginScreen) {
+                case "SGBR":
+                    Origin = 'SAO/'
+                    break;
+                case "SGBL":
+                    Origin = 'RIO/'
+                    break;
+                case "EGLL":
+                    Origin = 'LON/'
+                    break;
+                default:
+                    Origin = 'JFK/'
+            }
+            switch (DestinationScreen) {
+                case "KJFK":
+                    Destination = 'JFK/'
+                    break;
+                case "SGBL":
+                    Destination = 'RIO/'
+                    break;
+                case "EGLL":
+                    Destination = 'LON/'
+                    break;
+                default:
+                    Destination = 'SAO/'
+            }
+
+            var Date = document.getElementById('Date').value;
+            var DateFormat = Date.substring(6, 10) + '-' + Date.substring(0, 2) + '-' + Date.substring(3, 5)
+            var DateUrl = DateFormat + '/' + DateFormat
+            var url = 'https://www.decolar.com/shop/flights/search/roundtrip/' + Origin + Destination + DateUrl + '/1/0/0/NA/NA/NA/NA/NA/?from=SB&di=1-0'
+
+            location.href = url;
+
+        }
+    </script>
+</head>
+<body>
+    <header>
+
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Will your flight delay?</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Componentes">Componentes</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div>
+                <a href="javascript:void(0)" onclick="goToURL(); return false;">Decolar.com!</a>
+
+                @*<a href="https://www.decolar.com/">Decolar.com!</a>*@
+                @*<a href="https://www.decolar.com/shop/flights/search/roundtrip/SAO/LON/2020-07-15/2020-07-22/1/0/0/NA/NA/NA/NA/NA/?from=SB&di=1-0">Decolar.com!</a>*@
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2020 - Seu voo vai atrasar ltda. - <a asp-area="" asp-controller="Home" asp-action="Componentes">Componentes</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,194 @@
+﻿@model FlightDelayWeb.Models.Graphs
+
+<html>
+<head>
+
+    <title>Tech Guru</title>
+
+    <script type="text/javascript">
+        window.onload = function () {
+            var test1 =  '@Html.Raw(ViewBag.Label1)';
+            var test2 = "@ViewBag.Label2";
+            var test3 = "@ViewBag.Label3";
+            var test4 = "@ViewBag.Label4";
+            var test5 = "@ViewBag.Label5";
+            var test6 = "@ViewBag.Label6";
+            var test7 = "@ViewBag.Label7";
+            var prob1 = @ViewBag.Prob1;
+            var prob2 = @ViewBag.Prob2;
+            var prob3 = @ViewBag.Prob3;
+            var prob4 = @ViewBag.Prob4;
+            var prob5 = @ViewBag.Prob5;
+            var prob6 = @ViewBag.Prob6;
+            var prob7 = @ViewBag.Prob7;
+
+            var chart = new CanvasJS.Chart("chartContainer", {
+                theme: "light1", // "light2", "dark1", "dark2"
+                animationEnabled: false, // change to true
+                title: {
+                    text: "Your options"
+                },
+                data: [
+                    {
+                        // Change type to "bar", "area", "spline", "pie",etc.
+                        type: "column",
+                        dataPoints: [
+                            { label: test1, y: prob1 },
+                            { label: test2, y: prob2 },
+                            { label: test3, y: prob3 },
+                            { label: test4, y: prob4 },
+                            { label: test5, y: prob5 },
+                            { label: test6, y: prob6 },
+                            { label: test7, y: prob7 }
+                        ]
+                    }
+                ]
+            });
+            chart.render();
+
+        }
+    </script>
+</head>
+
+<body>
+    <div>
+        <form method="post">
+            <div class="container" width="500px">
+                <div class="row">
+                    <div class="col">
+
+                        @Html.LabelFor(m => m.Date, new { @class = "form-control", style = "width:70px" })
+                    </div>
+                    <div class="col">
+
+                        @Html.TextBoxFor(m => m.Date, new { @class = "form-control", style = "width:200px" })
+                    </div>
+                    <div class="col">
+                        @Html.LabelFor(m => m.Time, new { @class = "form-control", style = "width:70px" })
+                    </div>
+                    <div class="col">
+                        @Html.TextBoxFor(m => m.Time, new { @class = "form-control", style = "width:200px" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        @Html.DropDownList("Origin",
+                            new SelectList(Enum.GetValues(typeof(FlightDelayWeb.Models.Airport))),
+                            "Select Origin",
+                            new { @class = "form-control", style = "width:200px" })
+                    </div>
+                    <div class="col">
+                        @Html.DropDownList("Destination",
+                            new SelectList(Enum.GetValues(typeof(FlightDelayWeb.Models.Airport))),
+                            "Select Destination",
+                            new { @class = "form-control", style = "width:200px" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col" style="padding-top:10px">
+                        <input type="submit" title="Delete" id="btnCheck" value="Check" />
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+        <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    </div>
+
+</body>
+</html>
+
+
+@*<script type="text/javascript">
+
+    var canvas ;
+    var context ;
+    var Val_Max;
+    var Val_Min;
+    var sections;
+    var xScale;
+    var yScale;
+            var y;
+            var itemName = @Html.Raw(ViewBag.Labels);
+            var itemValue = @Html.Raw(ViewBag.Probs);
+            var value = 1;
+            function func1(value) {
+                var rr = 0;
+                var www = document.getElementById('origin').value
+                ww.replace("-", "");//TODO
+                 id = {
+            _color: value // being _color a property of `box`
+        }
+       $.ajax({
+                        type: "PATCH",
+                        url: 'Home/Index/02022020/15/EGLL/KJFK',
+                        data: JSON.stringify(value),
+                        contentType: "application/json",
+                        success: function (msg) {
+                            $("#txtStartDate").val(msg.d);
+                        }
+                    });        }
+    function init() {
+
+        sections = 7;
+        Val_Max = 10;
+        var stepSize = 1;
+        var columnSize = 50;
+        var rowSize = 60;
+        var margin = 10;
+        var header = "In percent"
+        //
+        canvas = document.getElementById("canvas");
+        context = canvas.getContext("2d");
+        context.fillStyle = "#000;"
+
+        yScale = (canvas.height - columnSize - margin) / (Val_Max);
+        xScale = (canvas.width - rowSize) / (sections + 1);
+
+        context.strokeStyle="#000;"; // background black lines
+        context.beginPath();
+            // column names
+        context.font = "19 pt Arial;"
+        context.fillText(header, 0,columnSize - margin);
+            // draw lines in the background
+        context.font = "16 pt Helvetica"
+        var count =  0;
+        for (scale=Val_Max;scale>=0;scale = scale - stepSize) {
+            y = columnSize + (yScale * count * stepSize);
+            context.fillText(scale, margin,y + margin);
+            context.moveTo(rowSize,y)
+            context.lineTo(canvas.width,y)
+            count++;
+        }
+        context.stroke();
+
+            // print names of each data entry
+        context.font = "20 pt Verdana";
+        context.textBaseline="bottom";
+        for (i=0;i<7;i++) {
+            computeHeight(itemValue[i]);
+            context.fillText(itemName[i], xScale * (i+1),y - margin);
+        }
+
+            // shadow for graph's bar lines with color and offset
+
+        context.fillStyle="#9933FF;";
+      context.shadowColor = 'rgba(128,128,128, 0.5)';
+
+      //shadow offset along X and Y direction
+        context.shadowOffsetX = 9;
+        context.shadowOffsetY = 3;
+
+            // translate to bottom of graph  inorder to match the data
+      context.translate(0,canvas.height - margin);
+        context.scale(xScale,-1 * yScale);
+
+            // draw each graph bars
+        for (i=0;i<7;i++) {
+            context.fillRect(i+1, 0, 0.3, itemValue[i]);
+        }
+    }
+
+
+       <canvas id="canvas" height="400" width="650">
+        </canvas>*@

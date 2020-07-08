@@ -20,7 +20,7 @@ class Probability(Resource):
         a,b,c,d,e,f,g,h = date
         date1 = a + b + "/" + c + d + "/" + e + f + g + h + " " + time + ":00:00"
         date2 = datetime.strptime(date1, '%d/%m/%Y %H:%M:%S')
-        path = r"C:\Users\danie\Desktop\gru_data\2019.csv"
+        path = r"C:\Users\dan\source\repos\Flight-Delay\data\2019.csv"
         df = pd.read_csv(path,sep=',')
         df['Delayed'] = df['Delayed'].astype(float)
         print(df.dtypes)
